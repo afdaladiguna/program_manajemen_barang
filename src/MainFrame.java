@@ -20,7 +20,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     public void displayProductList(java.util.List<Product> productList) {
         DefaultTableModel model = (DefaultTableModel) productTable.getModel();
-        model.setRowCount(0); // Clear all existing rows
+        model.setRowCount(0); // Memulai table dari 0
 
         for (Product product : productList) {
             Object[] rowData = {
@@ -31,7 +31,7 @@ public class MainFrame extends javax.swing.JFrame {
                 product.getPrice(),
                 product.getDateAdded()
             };
-            model.addRow(rowData); // Add a new row with the product data
+            model.addRow(rowData); // menambah baris dengan data produk
         }
     }
 
@@ -233,7 +233,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        tfCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Konsumsi", "Pakaian", "Kosmetik" }));
+        tfCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Konsumsi", "Pakaian", "Kosmetik", "Minuman" }));
 
         tfSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Kategori", "Jumlah Stok", "Jumlah Harga" }));
         tfSort.addActionListener(new java.awt.event.ActionListener() {
@@ -450,6 +450,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void productTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productTableMouseClicked
         // TODO add your handling code here:
         int selectedRow = productTable.getSelectedRow();
+        textBlack();
         if (selectedRow != -1) {
             // Dapatkan data dari baris yang diklik
             int productId = (int) productTable.getValueAt(selectedRow, 0);
@@ -484,6 +485,7 @@ public class MainFrame extends javax.swing.JFrame {
             tfDateAdded.setText("");
             displayProductList(productService.findProductList());
             textBlack();
+            JOptionPane.showMessageDialog(this, "Barang berhasil di hapus.");
         } catch (Exception exc) {
             JOptionPane.showMessageDialog(this, "Gagal menghapus, klik item pada table untuk menghapus.");
         }

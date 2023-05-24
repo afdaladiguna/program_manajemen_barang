@@ -73,13 +73,6 @@ public class ProductServiceImplement implements ProductService {
     }
 
     @Override
-    public Product findBookById(int id) {
-
-        return null;
-
-    }
-
-    @Override
     public List<Product> findProductList() {
         List<Product> products = new ArrayList<>();
 
